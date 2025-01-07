@@ -11,6 +11,15 @@ const firebaseConfig = {
     appId: "1:1007834907145:web:d63bb1cff3829b06c62ed8"
 };
 
+// const firebaseConfig = {
+//     apiKey: process.env.REACT_APP_apiKey,
+//     authDomain: process.env.REACT_APP_authDomain,
+//     projectId: process.env.REACT_APP_projectId,
+//     storageBucket: process.env.REACT_APP_storageBucket,
+//     messagingSenderId: process.env.REACT_APP_messagingSenderId,
+//     appId: process.env.REACT_APP_appId
+// };
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const firebase_db = getFirestore(app);
@@ -61,9 +70,16 @@ function HtmlPreview() {
     }, []);
 
     return (
-        <div style={{ maxWidth: '796px' }} dangerouslySetInnerHTML={{ __html: contentHtml }}>
-
-        </div>
+        <iframe
+            style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                overflow: 'hidden',
+            }}
+            srcDoc={contentHtml} // Sử dụng srcDoc thay vì dangerouslySetInnerHTML
+            title="CV-maker"
+        />
     );
 }
 
