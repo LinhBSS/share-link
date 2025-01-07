@@ -1,5 +1,14 @@
+import { useEffect, useState } from 'react';
 import HtmlPreview from './components/HtmlPreview';
 function App() {
+  const [request, setRequest] = useState({ userId: '', type: '' });
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const type = queryParams.get('type');
+    const userId = queryParams.get('userId');
+    setRequest({ type, userId })
+  }, []);
 
   return (
     <div
@@ -17,7 +26,7 @@ function App() {
           height: '100vh',
         }}
       >
-        <HtmlPreview />
+        <HtmlPreview userId={request.userId} type={request.type} />
       </div>
     </div>
   );
